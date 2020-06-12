@@ -62,8 +62,6 @@ h1. $moduleName
 
 $(IncludeTableOfContents)
 
-\\
-\\
 "@
 
 
@@ -182,12 +180,7 @@ h3. Links
 @"
 
 \\
-\\
-\\
 ----
-\\
-\\
-\\
 
 "@
 
