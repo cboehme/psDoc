@@ -16,8 +16,15 @@ function JoinParagraphs([string] $str) {
 	$paragraph = ""
 	for ($i = 0; $i -lt $lines.Count; $i++) {
 		$line = $lines[$i].Trim()
-		if ($line -eq "") {
-			$paragraphs += ($paragraph.Trim() + "`n")
+		if ($line -eq "" -or $line.StartsWith("- ")) {
+			$paragraph = $paragraph.Trim()
+			if ($paragraph.StartsWith("- ")) {
+				$paragraph = " " + $paragraph
+			}
+			if ($line -eq "") {
+				$paragraph = $paragraph + "`n"
+			}
+			$paragraphs += $paragraph
 			$paragraph = ""
 		}
 		$paragraph = $paragraph, $line -join " "
