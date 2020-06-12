@@ -1,12 +1,31 @@
 function TrimAllLines([string] $str) {
 	$lines = $str -split "`n"
-
+	
 	for ($i = 0; $i -lt $lines.Count; $i++) {
 		$lines[$i] = $lines[$i].Trim()
 	}
 
 	# Trim EOL.
 	($lines | Out-String).Trim()
+}
+
+function JoinParagraphs([string] $str) {
+	$lines = $str -split "`n"
+	
+	$paragraphs = [string[]] @()
+	$paragraph = ""
+	for ($i = 0; $i -lt $lines.Count; $i++) {
+		$line = $lines[$i].Trim()
+		if ($line -eq "") {
+			$paragraphs += ($paragraph.Trim() + "`n")
+			$paragraph = ""
+		}
+		$paragraph = $paragraph, $line -join " "
+	}
+	$paragraphs += ($paragraph.Trim() + "`n")
+
+	# Trim EOL.
+	($paragraphs | Out-String).Trim()
 }
 
 function FixMarkdownString([string] $in = '', [bool] $includeBreaks = $false, [bool]$BlankStringToSpace = $False) {
@@ -87,7 +106,7 @@ $(FixMarkdownString($syntax))
 	
 @"
 h3. Description
-$(FixMarkdownString $(($_.Description  | out-string).Trim()) $true)
+$(JoinParagraphs $(($_.Description  | out-string).Trim()))
 "@	
 
 @"	
