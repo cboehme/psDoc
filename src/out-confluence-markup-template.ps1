@@ -176,7 +176,7 @@ h3. Examples
 "@
 		$_.examples.example | % {
 @"
-{code:title=$(FixMarkdownString($_.title.Trim(('-',' '))))|theme=Confluence|linenumbers=true|language=Powershell|firstline=0001|collapse=false}
+{code:title=$(FixMarkdownString($_.title.Trim(('-',' '))))|theme=Confluence|language=Powershell|collapse=false}
 $(FixMarkdownCodeString($_.code | out-string ))
 {code}
 
