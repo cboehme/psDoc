@@ -72,7 +72,7 @@ function FixMarkdownCodeString([string] $in) {
 
 function IncludeTableOfContents {
 
-	return "{toc:printable=true|style=square|maxLevel=2|indent=5px|minLevel=2|class=bigpink|exclude=[1//2]|type=list|outline=true|include=.*}"
+	return "{toc:printable=true|style=disc|maxLevel=2|minLevel=2|exclude=[1//2]|type=list|include=.*}"
 }
 
 
